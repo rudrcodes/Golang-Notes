@@ -1,0 +1,61 @@
+# Golang Notes 
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+type nameStr struct {
+	//multiple values of the same type can be defined like this with a comma separator and the type at the end
+	name, last string
+	age        int
+}
+
+// Function syntax when we want to use them as struct methods : Method Syntax
+func (rudrName nameStr) printName(anything int) string {
+	return fmt.Sprintf("My name is %s\nAnd my age is %d", rudrName.name, anything)
+}
+
+// General Function declaration
+// func nameOfFunc(parameterName parameterType) (returnType){
+// }
+type message struct {
+	messageContent string
+}
+
+func sendMessage(msg message) int {
+	fmt.Println("Sending message", msg.messageContent)
+
+	return len(msg.messageContent)
+}
+
+func testFunc() float64 {
+	return 0.05 * float64(2)
+}
+
+// ------------ main func hai -------------------
+func main() {
+	fmt.Println("Hello, Rudransh")
+
+	type shape interface {
+		name() string
+		last() string
+		age() int
+	}
+
+	//function in go
+	//func (parameter_name param_type) name_of_func() <return_type>{
+	//}
+
+	//creating a struct type variable
+	rudr := nameStr{"Rudransh", "Sharma", 25}
+	fmt.Println(rudr.printName(21))
+
+	msgStructVar := message{"Rudransh says hello"}
+
+	returnIntValue := sendMessage(msgStructVar)
+
+	fmt.Println(returnIntValue)
+	fmt.Println(testFunc())
+
+}
