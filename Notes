@@ -32,6 +32,19 @@ func sendMessage(msg message) int {
 func testFunc() float64 {
 	return 0.05 * float64(2)
 }
+# LOOPS IN GO : 
+1) For loop Syntax :
+for INITIAL; CONDITION; AFTER{
+  // do something
+}
+example :
+for i := 0; i < 10; i++ {
+  fmt.Println(i)
+}
+
+
+
+
 
 // ------------ main func hai -------------------
 func main() {
