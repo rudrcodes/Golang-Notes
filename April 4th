@@ -70,17 +70,20 @@ func main() {
 	//slice2 = append(slice2, 1, 2, 3)
 	opstring := fmt.Sprintf("Length of slice2 is: %d", len(slice2))
 	fmt.Println(opstring)
-	
+
 	//Maps in go
-	ages:= make(map[string]int)
-	ages["Rudransh"]=1
-	ages["Aggarwal"]=2
-	
-	ages2=map[string]int{
-	"Rudransh2":1,
-	"Aggarwal2":2,
-	//In golang , the last element has to has a comma  
+	ages := make(map[string]int)
+	ages["Rudransh"] = 1
+	ages["Aggarwal"] = 2
+
+	ages2 := map[string]int{
+		"Rudransh2": 12,
+		"Aggarwal2": 2,
+		//In golang , the last element has to has a comma
 	}
-	
-	for key,element= range ages{}
+
+	fmt.Printf("Ages2: %d\n", ages2["Rudransh2"])
+	fmt.Printf("The key which doesn't exist in the map has value 2, Example: In Ages2 'Rudransh' key doesn't exists hence we'll get 0 for it: %d\n", ages2["Rudransh"])
+	fmt.Printf("Ages: %d", ages["Rudransh"])
+
 }
