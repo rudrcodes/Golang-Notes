@@ -1,0 +1,86 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func val() {
+	fmt.Println(2212)
+}
+
+// Variadic functions can take a variable number of parameters passed to them as a slice
+// A variadic function receives the variadic arguments as a slice.
+
+func variadicFuncName(nums ...int) {
+	for i := 0; i < len(nums); i++ {
+		fmt.Println(nums[i])
+	}
+}
+func main() {
+	fmt.Println("Hello, Rudransh")
+	// Slices in GO
+	//Slices are dynamic arrays , we can change their size according to requirements.
+	//Slices refer arrays , hence more than one slice can refer the same array.
+
+	//Array syntax
+	var rudrArr [5]int
+	rudrArr = [5]int{1, 2, 3, 4, 5}
+
+	// Slice of rudrArr
+	rudrSlice := rudrArr[0:2] // This means [0,2)
+	// [lowIndex is inclusive, highIndex is not inclusive]
+
+	// make function in GO To create a Slice
+	varSlice := make([]int, 3)
+	varSlice = rudrArr[0:4]
+
+	var x int = 10
+	y := 20
+
+	//declaring a Slice
+	var mySlice []int
+
+	mySlice2 := []int{1, 2, 3, 4}
+
+	fmt.Println(len(mySlice))
+	fmt.Println(len(mySlice2))
+	fmt.Println(rudrSlice)
+	fmt.Println(varSlice)
+	fmt.Println(x)
+	fmt.Println(y)
+
+	//Looping over array
+	for i := 0; i < len(rudrArr); i++ {
+		fmt.Printf("%v\n", rudrArr[i])
+	}
+
+	//Functions in Golang
+	val()
+
+	//Variadic Functions and Spread operator
+	variadicFuncName(1, 2, 3)
+	// SPREAD OPERATOR: The spread operator allows us to pass a slice into a variadic function. The spread operator consists of three dots following the slice in the function call.
+	sliceHaiMera := []int{5, 6, 7, 8, 9}
+	variadicFuncName(sliceHaiMera...)
+
+	//Append in Slice
+	//var slice2 []int
+	// slice2 := make([]int, 5, 10)
+	slice2 := []float64{}
+	//slice2 = append(slice2, 1, 2, 3)
+	opstring := fmt.Sprintf("Length of slice2 is: %d", len(slice2))
+	fmt.Println(opstring)
+	
+	//Maps in go
+	ages:= make(map[string]int)
+	ages["Rudransh"]=1
+	ages["Aggarwal"]=2
+	
+	ages2=map[string]int{
+	"Rudransh2":1,
+	"Aggarwal2":2,
+	//In golang , the last element has to has a comma  
+	}
+	
+	for key,element= range ages{}
+}
