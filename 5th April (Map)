@@ -1,0 +1,49 @@
+## Maps
+Syntax-> varMap:=make(map[<data_type_of_key>] <data_type_of_value>)
+Example-> varMap:=make(map[string] int)
+
+varMap["rudransh"]=12;
+
+### Different ways to create the Map :
+1)   varMap=map[string]int{
+        "rudransh":112
+      }
+2) var varMap = map[string]int{
+		"rudransh": 112,
+	}
+
+3)  varMap:=make(map[string] int)
+    varMap["rudransh"]=12;
+
+## Operations in Map :
+1) INSERT AN ELEMENT
+m[key] = elem
+
+2) GET AN ELEMENT
+elem = m[key]
+
+3) DELETE AN ELEMENT
+delete(m, key)
+
+4) CHECK IF A KEY EXISTS
+elem, ok := m[key]
+- If key is in m, then ok is true. If not, ok is false.
+- If key is not in the map, then elem is the zero value for the map's element type.
+
+## KEY TYPES
+Map keys may be of any type that is comparable. The language spec defines this precisely, but in short, comparable types are boolean, numeric, string, pointer, channel, and interface types, and structs or arrays that contain only those types. Notably absent from the list are slices, maps, and functions; these types cannot be compared using ==, and may not be used as map keys.
+It's obvious that strings, ints, and other basic types should be available as map keys, but perhaps unexpected are struct keys. Struct can be used to key data by multiple dimensions. For example, this map of maps could be used to tally web page hits by country:
+hits := make(map[string]map[string]int)
+
+Instead of having nested maps , we can use help of structs here
+That is:
+On the other hand, a design that uses a single map with a struct key does away with all that complexity:
+Example:   type Key struct {
+            Path, Country string
+          }
+          hits := make(map[Key]int)
+Here a pair of strings are uniquely representing a key, this will work same as above
+We can do this to access the values for that key pair :->  hits[Key{"key1", "key2"}]
+
+## Important Point:
+- LIKE SLICES, MAPS HOLD REFERENCES: Like slices, maps hold references to an underlying data structure. If you pass a map to a function that changes the contents of the map, the changes will be visible in the caller.
