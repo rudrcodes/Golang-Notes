@@ -1,0 +1,43 @@
+# Methods and Functions 
+
+In Go, both functions and methods are used to define blocks of code that perform specific tasks. However, there are differences between the two.
+
+Functions:
+
+Functions in Go are standalone blocks of code that can be called from anywhere in the program.
+They are defined using the func keyword followed by the function name, optional parameters, optional return types, and the function body enclosed in curly braces.
+Functions can accept zero or more parameters and can return zero or more values.
+Example of a function declaration:
+go
+Code : 
+func add(a, b int) int {
+    return a + b
+}
+Functions are called by using their name followed by parentheses containing arguments, if any.
+Example of calling a function:
+go
+Code : 
+sum := add(3, 5)
+Methods:
+
+Methods are functions associated with a particular type.
+They are defined similarly to functions, but they are declared with a receiver parameter before the function name.
+Methods allow you to attach behavior to user-defined types (structs) in Go.
+Example of a method declaration:
+go
+Code : 
+type Circle struct {
+    radius float64
+}
+
+func (c Circle) area() float64 {
+    return math.Pi * c.radius * c.radius
+}
+In this example, area() is a method of the Circle type, and (c Circle) is the receiver parameter, indicating that area() is associated with the Circle type.
+Methods are called on values of the associated type using dot notation.
+Example of calling a method:
+go
+Code : 
+circle := Circle{radius: 5}
+fmt.Println(circle.area())
+In summary, functions are standalone blocks of code, while methods are functions associated with a specific type. Methods allow you to add behavior to user-defined types, making them a powerful feature for organizing and structuring Go code.
