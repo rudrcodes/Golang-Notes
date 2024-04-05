@@ -1,0 +1,13 @@
+# Different Ways to create Pointer :
+
+1)
+valueHai := 2
+var pointerHai *int = &valueHai
+fmt.Println(*pointerHai)
+
+2)
+valueHai := 100
+pointerHai := &valueHai
+fmt.Println(*pointerHai)
+	
+	
