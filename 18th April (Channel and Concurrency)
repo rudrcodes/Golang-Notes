@@ -1,0 +1,55 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func functionName() {
+	time.Sleep(time.Millisecond * 250)
+	fmt.Printf("outside")
+}
+
+func callMe() {
+	fmt.Println("inside")
+	go functionName()
+}
+
+func main() {
+	//Concurrency in GO
+	//Using the 'go' keyword we can get the ability to run code concurrently with the rest of the code.
+	//Important: We can't capture any return value from the function call.
+	callMe()
+
+	//Channel
+	//Sending or receiving values from a channel are blocking tasks
+	//'<-' is called the channel operator. Data flows in the direction of arrow. The operation will block until another goroutine is ready to receive the value.
+
+	//Creating a channel
+	ch := make(chan init)
+	//Sending data to a channel
+	ch <- 10
+	//Receiving data from a channel
+	v := <-ch
+
+	//Empty structs are treated as tokens in Go programs.
+	type Signal struct{}
+	ch := make(chan Signal)
+	//In this context, a token is a unary value.We don't care what is passed through the channel , we care when and is it is passed.
+	//We can block & wait until something is sent on a channel using the following syntax:
+	<-ch
+	//This will block until it pops a single item off the channel , then continue , discarding the item
+
+	//Buffered Channels 
+	Channels can optionally be buffered.
+	//Creating a Channel with a Buffer
+	ch:=make(chan int,100)
+	//100 is the buffer length
+	//Sending on a buffered channel only blocks when the buffer is full
+	//Receiving blocks only when the buffer is empty
+	
+	
+
+}
