@@ -1,0 +1,65 @@
+In Go, a struct is a composite data type that groups together zero or more fields of different types under a single name. It's similar to a class in object-oriented languages but lacks inheritance and methods. Here's a basic example of a struct definition in Go:
+
+```go
+package main
+
+import "fmt"
+
+// Define a struct type named Person
+type Person struct {
+    name string
+    age  int
+}
+
+func main() {
+    // Create a new Person struct instance
+    p := Person{name: "Alice", age: 30}
+
+    // Accessing struct fields
+    fmt.Println("Name:", p.name)
+    fmt.Println("Age:", p.age)
+
+    // Modifying struct fields
+    p.age = 31
+    fmt.Println("Updated Age:", p.age)
+}
+```
+
+In this example:
+- `Person` is defined as a struct type with two fields: `name` of type `string` and `age` of type `int`.
+- An instance `p` of type `Person` is created with field values `"Alice"` and `30`.
+- We access and modify the struct fields using dot notation (`p.name`, `p.age`).
+
+Structs are commonly used in Go for modeling data structures, representing objects, and organizing related data. They are often passed by value, meaning when you pass a struct to a function or assign it to another variable, a copy of the struct is made. However, you can use pointers to structs to achieve pass-by-reference behavior.
+
+
+## Empty structs and Mon empty structs in go
+In Go, both empty structs and non-empty structs are used for different purposes.
+
+1. **Non-empty structs**: These are structs that contain one or more fields. They are used to define composite data types that hold multiple values of different types. Non-empty structs are commonly used to represent objects or data structures.
+
+   ```go
+   type Person struct {
+       Name string
+       Age  int
+   }
+   ```
+
+   In this example, `Person` is a non-empty struct with two fields: `Name` of type `string` and `Age` of type `int`.
+
+2. **Empty structs**: An empty struct has no fields defined within it. It's denoted by just a pair of curly braces `{}`. Despite not containing any fields, empty structs are still useful in Go because they occupy zero bytes of memory. They are often used as a placeholder or a signal in certain situations, such as signaling events or as a marker in maps.
+
+   ```go
+   type Signal struct{}
+   ```
+
+   Here, `Signal` is an empty struct with no fields. It can be used as a signal type, for example, in a channel to signal an event:
+
+   ```go
+   ch := make(chan Signal)
+   ```
+
+   Sending a value through this channel doesn't carry any data but signals that an event has occurred.
+
+Empty structs are also used in unique situations like creating set data structures or as a placeholder in certain patterns where only the presence or absence of a key in a map is important.
+
