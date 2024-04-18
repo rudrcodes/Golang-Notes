@@ -42,6 +42,73 @@ In this example:
 - Two goroutines are spawned. One sends "message 1" to `ch1` after 2 seconds, and the other sends "message 2" to `ch2` after 1 second.
 - The `select` statement waits for either `ch1` or `ch2` to have data ready to be received. Whichever channel is ready first, its corresponding case is executed, and the message is printed.
 
+
+
+## More code
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+type type1 struct{}
+type type2 struct{}
+
+func (t type1) funcName() {
+	fmt.Println("Name1")
+}
+func (t type2) funcName() {
+	fmt.Println("Name2")
+}
+
+
+
+
+func main() {
+	// Create two channels
+	ch1 := make(chan string)
+	ch2 := make(chan string)
+
+	// Goroutine sending "message 1" to ch1 after 2 seconds
+	go func() {
+		time.Sleep(1 * time.Second)
+		ch1 <- "message 1"
+		close(ch1)
+	}()
+
+	// Goroutine sending "message 2" to ch2 after 1 second
+	go func() {
+		time.Sleep(2 * time.Second)
+		ch2 <- "message 2"
+		close(ch2)
+	}()
+
+	// Use select to receive from whichever channel is ready first
+	for {
+
+		select {
+		case msg1, ok := <-ch1:
+			if !ok {
+				return
+			}
+			fmt.Println("Received:", msg1)
+		case msg2, ok := <-ch2:
+			if !ok {
+				return
+			}
+			fmt.Println("Received:", msg2)
+		}
+
+		type1Struct := type1{}
+		type2Struct := type2{}
+		type1Struct.funcName()
+		type2Struct.funcName()
+	}
+
+}
+
+
 The `select` statement is very powerful for coordinating concurrent operations in Go, especially when dealing with multiple channels and goroutines. It allows for non-blocking operations and can be used to implement various concurrency patterns effectively.
 
 Summary : In Go, `select` is like a switch statement, but specifically for channels. It lets you wait for multiple channel operations to happen simultaneously, and when one is ready, it executes the corresponding case. It's handy for coordinating communication between goroutines, especially when dealing with multiple channels.
