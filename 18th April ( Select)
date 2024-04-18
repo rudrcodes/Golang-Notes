@@ -1,0 +1,47 @@
+In Go, the `select` statement is used to wait on multiple communication operations simultaneously. It's primarily used with channels for synchronization and communication between goroutines. The `select` statement blocks until one of its cases can proceed, then it executes that case. If multiple cases are ready, one is chosen randomly.
+
+Here's a basic example demonstrating the usage of `select` with channels:
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    // Create two channels
+    ch1 := make(chan string)
+    ch2 := make(chan string)
+
+    // Goroutine sending "message 1" to ch1 after 2 seconds
+    go func() {
+        time.Sleep(2 * time.Second)
+        ch1 <- "message 1"
+    }()
+
+    // Goroutine sending "message 2" to ch2 after 1 second
+    go func() {
+        time.Sleep(1 * time.Second)
+        ch2 <- "message 2"
+    }()
+
+    // Use select to receive from whichever channel is ready first
+    select {
+    case msg1 := <-ch1:
+        fmt.Println("Received:", msg1)
+    case msg2 := <-ch2:
+        fmt.Println("Received:", msg2)
+    }
+}
+```
+
+In this example:
+- We create two channels `ch1` and `ch2`.
+- Two goroutines are spawned. One sends "message 1" to `ch1` after 2 seconds, and the other sends "message 2" to `ch2` after 1 second.
+- The `select` statement waits for either `ch1` or `ch2` to have data ready to be received. Whichever channel is ready first, its corresponding case is executed, and the message is printed.
+
+The `select` statement is very powerful for coordinating concurrent operations in Go, especially when dealing with multiple channels and goroutines. It allows for non-blocking operations and can be used to implement various concurrency patterns effectively.
+
+Summary : In Go, `select` is like a switch statement, but specifically for channels. It lets you wait for multiple channel operations to happen simultaneously, and when one is ready, it executes the corresponding case. It's handy for coordinating communication between goroutines, especially when dealing with multiple channels.
